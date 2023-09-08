@@ -19,6 +19,7 @@ import Loader from "@/components/Loader"
 import { cn } from "@/lib/utils"
 import UserAvatar from "@/components/UserAvatar"
 import BotAvatar from "@/components/BotAvatar"
+import { useProModal } from "@/hooks/UseProModal"
 
 
 
@@ -35,7 +36,7 @@ const ConversationPage = () => {
     })
 
     const isLoading = form.formState.isSubmitting;
-
+    const proModal = useProModal()
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             const userMessage: ChatCompletionRequestMessage = {
@@ -50,7 +51,9 @@ const ConversationPage = () => {
 
             form.reset()
         } catch (err: any) {
-            console.log(err)
+            if (err?.response?.status === 403) {
+                proModal.onOpen()
+            }
         } finally {
             router.refresh()
         }
