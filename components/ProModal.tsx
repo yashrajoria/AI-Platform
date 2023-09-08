@@ -17,6 +17,7 @@ import { Card } from './ui/card'
 import { cn } from '@/lib/utils'
 import { Button } from './ui/button'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 const tools = [
     {
@@ -66,6 +67,7 @@ const ProModal = () => {
             window.location.href = response.data.url;
         } catch (err) {
             console.log("Stripe Client error", err)
+            toast.error("Something went wrong")
         }
         finally {
             setLoading(false)
