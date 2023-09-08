@@ -28,11 +28,12 @@ import {
 } from "@/components/ui/select";
 import { Card, CardFooter } from "@/components/ui/card";
 import { Download } from "lucide-react";
+import { useProModal } from "@/hooks/UseProModal";
 
 const ImagePage = () => {
     const router = useRouter();
     const [images, setImages] = useState<string[]>([]);
-
+    const proModal = useProModal()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -63,8 +64,9 @@ const ImagePage = () => {
             setImages(urls);
             form.reset()
         } catch (error) {
-            console.error("[API Request Error]", error);
-            // Handle errors here
+            if (err?.response?.status === 403) {
+                proModal.onOpen()
+            }
         } finally {
             router.refresh();
         }
