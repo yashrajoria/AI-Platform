@@ -42,6 +42,8 @@ const MusicPage = () => {
         } catch (err: any) {
             if (err?.response?.status === 403) {
                 proModal.onOpen()
+            } else {
+                toast.error("Something went wrong error")
             }
         } finally {
             router.refresh();
