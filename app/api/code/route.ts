@@ -18,7 +18,6 @@ const instructionMessage: CreateChatCompletionRequestMessage = {
 export async function POST(req: Request) {
   try {
     const { userId } = auth();
-    console.log({ userId });
     const body = await req.json();
     const { messages } = body;
 
