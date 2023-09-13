@@ -18,6 +18,7 @@ import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
 import ProModal from "@/components/ProModal";
 import { useProModal } from "@/hooks/UseProModal";
+import toast from "react-hot-toast";
 
 const MusicPage = () => {
     const router = useRouter();

@@ -2,7 +2,8 @@
 
 import * as z from "zod"
 import axios from "axios"
-import Heading from '@/components/Heading'
+import Heading from '@/components/Heading';
+
 
 import React, { useState } from 'react'
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -13,7 +14,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
 import { Code } from "lucide-react"
-import { ChatCompletionRequestMessage } from "openai";
+import { CreateChatCompletionRequestMessage } from "openai/resources/chat";
 import Empty from "@/components/Empty"
 import Loader from "@/components/Loader"
 import { cn } from "@/lib/utils"
@@ -24,10 +25,10 @@ import { useProModal } from "@/hooks/UseProModal"
 import toast from "react-hot-toast"
 
 
-const CodePage = () => {
+const CodePage: React.FC = () => {
     const router = useRouter()
     const proModal = useProModal();
-    const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
+    const [messages, setMessages] = useState<CreateChatCompletionRequestMessage[]>([]);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -40,7 +41,7 @@ const CodePage = () => {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            const userMessage: ChatCompletionRequestMessage = {
+            const userMessage: CreateChatCompletionRequestMessage = {
                 role: "user",
                 content: values.prompt
             }
