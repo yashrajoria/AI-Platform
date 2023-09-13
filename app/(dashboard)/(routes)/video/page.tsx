@@ -17,6 +17,7 @@ import { VideoIcon } from "lucide-react";
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
 import { useProModal } from "@/hooks/UseProModal";
+import toast from "react-hot-toast";
 
 const VideoPage = () => {
     const router = useRouter();

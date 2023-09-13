@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
 import { MessageSquare } from "lucide-react"
-import { ChatCompletionRequestMessage } from "openai";
+import { CreateChatCompletionRequestMessage } from "openai/resources/chat";
 import Empty from "@/components/Empty"
 import Loader from "@/components/Loader"
 import { cn } from "@/lib/utils"
@@ -27,7 +27,7 @@ import toast from "react-hot-toast"
 const ConversationPage = () => {
     const router = useRouter()
 
-    const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
+    const [messages, setMessages] = useState<CreateChatCompletionRequestMessage[]>([]);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -40,7 +40,7 @@ const ConversationPage = () => {
     const proModal = useProModal()
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            const userMessage: ChatCompletionRequestMessage = {
+            const userMessage: CreateChatCompletionRequestMessage = {
                 role: "user",
                 content: values.prompt
             }
