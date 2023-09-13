@@ -35,6 +35,7 @@
     "lucide-react": "^0.259.0",
     "next": "13.4.9",
     "next-themes": "^0.2.1",
+    "node-fetch": "^3.3.2",
     "openai": "^4.4.0",
     "postcss": "8.4.25",
     "react": "18.2.0",
@@ -53,7 +54,7 @@
     "zustand": "^4.4.1"
   },
   "devDependencies": {
-    "prisma": "^5.2.0",
-    "encoding": "^0.1.13"
+    "encoding": "^0.1.13",
+    "prisma": "^5.2.0"
   }
 }
