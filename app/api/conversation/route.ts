@@ -2,6 +2,7 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { increaseAPILimit, checkAPILimit } from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/subscription";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -23,7 +24,9 @@ export async function POST(req: Request) {
     }
 
     const freeTrial = await checkAPILimit();
-    if (!freeTrial) {
+    const isPro = await checkSubscription();
+
+    if (!freeTrial && !isPro) {
       return new NextResponse("Free Trial has expired", { status: 403 });
     }
 
@@ -31,8 +34,7 @@ export async function POST(req: Request) {
       model: "gpt-3.5-turbo",
       messages,
     });
-
-    await increaseAPILimit();
+    if (!isPro) await increaseAPILimit();
 
     // Check if 'choices' is an array with at least one choice
     if (Array.isArray(response.choices) && response.choices.length > 0) {

@@ -20,6 +20,7 @@ import { cn } from "@/lib/utils"
 import UserAvatar from "@/components/UserAvatar"
 import BotAvatar from "@/components/BotAvatar"
 import { useProModal } from "@/hooks/UseProModal"
+import toast from "react-hot-toast"
 
 
 
@@ -53,6 +54,8 @@ const ConversationPage = () => {
         } catch (err: any) {
             if (err?.response?.status === 403) {
                 proModal.onOpen()
+            } else {
+                toast.error("Something went wrong error")
             }
         } finally {
             router.refresh()
