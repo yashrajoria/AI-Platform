@@ -31,7 +31,7 @@
     "clsx": "^1.2.1",
     "cmdk": "^1.0.1",
     "crisp-sdk-web": "^1.0.21",
-    "eslint": "9.15.0",
+    "eslint": "9.27.0",
     
     "eslint-config-next": "15.0.0",
 
