@@ -31,12 +31,12 @@
     "clsx": "^1.2.1",
     "cmdk": "^0.2.0",
     "crisp-sdk-web": "^1.0.21",
-    "eslint": "9.0.0",
+    "eslint": "9.26.0",
     
     "eslint-config-next": "14.1.0",
 
     "lucide-react": "^0.259.0",
-    "next": "14.1.1",
+    "next": "15.5.10",
     "next-themes": "^0.2.1",
     "node-fetch": "^3.3.2",
     "openai": "^4.4.0",
